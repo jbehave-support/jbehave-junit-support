@@ -35,7 +35,8 @@
 
     <properties>
         <version.jdk>1.8</version.jdk>
-        <version.junit>4.13.2</version.junit>
+        <version.junit>5.7.1</version.junit>
+        <version.junit-platform>1.7.1</version.junit-platform>
         <version.jbehave>4.8.3</version.jbehave>
         <version.slf4j>1.7.30</version.slf4j>
         <version.groovy>2.5.14</version.groovy>
@@ -77,9 +78,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${version.junit}</version>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-engine</artifactId>
+            <version>${version.junit-platform}</version>
         </dependency>
         <dependency>
             <groupId>org.jbehave</groupId>
@@ -96,6 +97,18 @@
             <groupId>org.spockframework</groupId>
             <artifactId>spock-core</artifactId>
             <version>${version.spock}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>${version.junit}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-testkit</artifactId>
+            <version>${version.junit-platform}</version>
             <scope>test</scope>
         </dependency>
         <dependency>

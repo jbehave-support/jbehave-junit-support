@@ -57,14 +57,14 @@ public class JUnitRunnerFormatter {
     }
 
     public static String normalizeStep(String step) {
-        return cleanup(fistline(step));
+        return cleanup(firstLine(step));
     }
 
     public static String removeClass(String text) {
         return text.replaceAll("\\(.*\\)", "");
     }
 
-    private static String fistline(String text) {
+    private static String firstLine(String text) {
         int newLineIndex = text.indexOf("\n");
         return text.substring(0, newLineIndex == -1 ? text.length() : newLineIndex - 1);
     }

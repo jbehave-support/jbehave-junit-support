@@ -16,6 +16,25 @@ Setup in the maven project:
 </dependency>
 ```
 
+### JUnit 5
+Very simple java class used by the JUnit 5 compatible test engine:
+```java
+public class BasicStory extends JUnit5Story {
+
+    public BasicStory() {
+        EmbedderConfiguration.recommendedConfiguration(configuredEmbedder());
+    }
+
+    @Override
+    public Configuration configuration() {
+        return new MostUsefulConfiguration();
+    }
+
+    ...
+}
+```
+
+### JUnit 4
 Very simple java class with runner implementation:
 ```java
 @RunWith(JUnitRunner.class)
