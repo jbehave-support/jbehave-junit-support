@@ -1,0 +1,30 @@
+name: Snapshot release
+on:
+  workflow_run:
+    workflows: [CI]
+    branches: [master]
+    types:
+      - completed
+
+jobs:
+  build:
+    name: Release snapshot
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2.1.4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Set up Java 8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 8
+      - name: Release
+        run: |
+          mvn jacoco:report coveralls:report
+          openssl aes-256-cbc -K $encrypted_9047eb4b7969_key -iv $encrypted_9047eb4b7969_iv -in cd/codesigning.asc.enc -out cd/codesigning.asc -d
+          gpg --fast-import cd/codesigning.asc
+          mvn deploy -Prelease --settings cd/settings.xml
